@@ -74,6 +74,23 @@
             dest=/home/{{ username }}/.oh-my-zsh/custom/
             force=no
 
+    - name: Cloning oh-my-zsh powerlevel9k
+      git:
+        repo=https://github.com/bhilburn/powerlevel9k
+        dest=/home/{{ username }}/.oh-my-zsh/custom/themes/powerlevel9k
+
+    - name: Folder for Powerline Fonts
+      file: path=/home/{{ username }}/.local/share/fonts state=directory
+      file: path=/home/{{ username }}/.config/fontconfig/conf.d state=directory
+
+    - name: Download Powerline Fonts
+      get_url:
+        url: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+        dest: ~/.local/share/fonts/PowerlineSymbols.otf
+      get_url:
+        url: https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+        dest: ~/.config/fontconfig/conf.d/10-powerline-symbols.conf
+
     - name: change user shell to zsh
       become: yes
       become_user: root

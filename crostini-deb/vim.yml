@@ -9,8 +9,7 @@
       package: name={{ item }}
       with_items:
         - ack
-        - ctags
-        - ruby
+        - python
         - vim
 
     - name: check if .vim exists
