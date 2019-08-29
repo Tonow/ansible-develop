@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# task: mattermost, atom, powerlevel9k, python_tools, etcher
+
+# check if we are in sudo
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+
+mkdir -p ~/bin
+
+cd ~/bin
+
+echo "In ~/bin"
+echo ''
+
+cd /opt
+
+echo "In /opt"
+echo ''
+#
+# echo "Install Mattermost :"
+# echo "* download"
+# curl -o mattermost-desktop-4.2.1-linux-x64.tar.gz  https://releases.mattermost.com/desktop/4.2.1/mattermost-desktop-4.2.1-linux-x64.tar.gz
+# echo "* extract"
+# tar -zxf mattermost-desktop-4.2.1-linux-x64.tar.gz
+# echo "* clean .tar.gz"
+# rm mattermost-desktop-4.2.1-linux-x64.tar.gz
+# echo "* Execute the script file to create a Mattermost.desktop file"
+# /opt/mattermost-desktop-4.2.1-linux-x64/create_desktop_file.sh
+# echo "* move to  ~/.local/share/applications/"
+# mv Mattermost.desktop ~/.local/share/applications/
+# echo "Mattermost Installed"
+# echo ''
+#
+#
+# echo "Install Atom :"
+# echo "* download"
+# cd ~/Downloads
+# wget https://atom.io/download/deb -O atom.deb
+# echo "* Install dpkg"
+# dpkg -i atom.deb
+# rm atom.deb
+# echo "Atom Installed"
+# echo ''
+#
+# echo "Install powerlevel9k themes:"
+# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# echo "powerlevel9k themes Installed"
+# echo ''
+#
+# echo "Python tools:"
+# echo "  * pdbpp"
+# pip3 install pdbpp --user
+# echo "pdbpp Installed"
+# echo ''
+#
+#
+# echo "Etcher:"
+# echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
+# sudo apt-get update
+# sudo apt-get install balena-etcher-electron
+# echo "Etcher Installed"
+# echo ''

@@ -29,29 +29,3 @@
       file: path=/home/{{ username }}/src-hub
             state=directory
 
-    - name: clone janus
-      git: repo=https://github.com/carlhuda/janus.git
-           dest=/home/{{ username }}/src-hub/janus
-           update=no
-
-    - name: create symlink to janus
-      file: path=/home/{{ username }}/.vim
-            src=/home/{{ username }}/src-hub/janus
-            state=link
-
-    - name: rake janus
-      shell: cd /home/{{ username }}/.vim && rake
-
-    - name: copy vimrc.after to user home
-      copy: src=vimrc.after
-            dest=/home/{{ username }}/.vimrc.after
-            force=no
-
-    - name: ensure the .janus directory is present
-      file: path=/home/{{ username }}/.janus
-            state=directory
-
-    - name: clone vim-colorschemes submodule
-      shell: cd /home/{{ username }}/.janus && git init && git submodule add
-             https://github.com/flazz/vim-colorschemes.git colorschemes
-             creates=/home/{{ username }}/.janus/colorschemes

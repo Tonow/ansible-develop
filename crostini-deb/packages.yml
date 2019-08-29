@@ -1,17 +1,14 @@
 ---
 - name: Install development packages
   hosts: localhost
-  become: True
+  become: yes
+  # become_user: root
+  # become_user: "{{ username }}"
   tasks:
     - name: Add repo ppa
       apt_repository:
-        name: "{{ repo }}"
-        state: present
-        update_cache: yes
-      vars:
-        repo:
-            - 'ppa:numix/ppa'
-            - 'ppa:phoerious/keepassxc'
+        repo: 'ppa:numix/ppa'
+        repo: 'ppa:phoerious/keepassxc'
 
     - name: install development packages
       apt:
@@ -21,38 +18,24 @@
       vars:
         packages:
             - ack
-            # - aptitude
-            # - bison
+            - atom
             - build-essential
             - bzip2
             - curl
             - git
-            # - git-svn
-            - golang
             - htop
-            # - make
-            # - mr
-            # - patch
-            # - rxvt-unicode
-            # - tmux
             - tree
             - xclip
             - openssh-client
             - openssh-server
-            - libgoo-canvas-perl
-            - shutter
+            # - libgoo-canvas-perl
+            # - shutter
             - telegram-desktop
             - keepassxc
             - vlc
             - gnome-tweak-tool
             - numix-gtk-theme
-            - numix-icon-theme-circle
-
-    - name: Dowload Teamviewer
-      get_url:
-        url: https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-        dest: ~/Téléchargements/teamviewer_amd64.deb
-
-    - name: Installing Teamviewer
-      apt:
-        deb: ~/Téléchargements/teamviewer_amd64.deb
+            # - numix-icon-theme-circle
+            - pipenv
+    - name: Run bash script to compete the previous install
+      script: ../cmd_install
