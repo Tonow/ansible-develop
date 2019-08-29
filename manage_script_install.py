@@ -14,6 +14,7 @@ class InstallTools:
         """
         # Input arg
         self.script_path = kwarg.get('script_path')
+        self.script_dir = kwarg.get('script_dir')
 
     def choose_task(self):
         """
@@ -63,18 +64,22 @@ class InstallTools:
         return tasks_updated
 
     def run_bash_script(self, tasks):
-        script_call = ["./" + self.script_path] + tasks
-        print(script_call)
-        call(script_call, shell=True)
+        for script in os.listdir(self.script_dir):
+            if script in tasks:
+                print(script)
+
+                call(self.script_dir + '/' + script, shell=True)
+        # script_call = ["./" + self.script_path] + tasks
 
 
-def main(script_path):
+def main(script_path, script_dir):
     """
         Helper to manage install scripts
     """
 
     kwargs = {
         'script_path': script_path,
+        'script_dir': script_dir,
     }
     tools = InstallTools(**kwargs)
     tasks = tools.choose_task()
@@ -82,4 +87,4 @@ def main(script_path):
     tools.run_bash_script(tasks_updated)
 
 if __name__ == "__main__":
-    main('cmd_install')
+    main('cmd_install', './install_script_bash')

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# task: mattermost, atom, powerlevel9k, python_tools, etcher
+# task: test.sh, mattermost.sh, atom.sh, powerlevel9.sh, python_tools.sh, etcher.sh
 
 # check if we are in sudo
 if [ "$EUID" -ne 0 ]
