@@ -20,12 +20,14 @@ class InstallTools:
         """
             Retrive tasks in file and return a list
         """
-        tasks = 'Any tasks find'
-        with open(self.script_path) as script:
-            for line in script:
-                if line.startswith('# task: '):
-                    tasks = line[8:-1]
-                    return tasks.split(', ')
+        tasks = os.listdir(self.script_dir)
+        if tasks is False:
+            tasks = 'Any tasks find'
+        # with open(self.script_path) as script:
+        #     for line in script:
+        #         if line.startswith('# task: '):
+        #             tasks = line[8:-1]
+        #             return tasks.split(', ')
         return tasks
 
     def _check_task_list(self, tasks):
@@ -64,11 +66,14 @@ class InstallTools:
         return tasks_updated
 
     def run_bash_script(self, tasks):
-        for script in os.listdir(self.script_dir):
+        os.chdir(self.script_dir)
+        for script in os.listdir():
             if script in tasks:
+                # import pdb; pdb.set_trace()
                 print(script)
+                path_script = os.getcwd()  + '/' + script
 
-                call(self.script_dir + '/' + script, shell=True)
+                call([path_script], shell=True)
         # script_call = ["./" + self.script_path] + tasks
 
 
@@ -87,4 +92,4 @@ def main(script_path, script_dir):
     tools.run_bash_script(tasks_updated)
 
 if __name__ == "__main__":
-    main('cmd_install', './install_script_bash')
+    main('cmd_install', 'install_script_bash')
