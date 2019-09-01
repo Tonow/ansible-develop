@@ -18,7 +18,6 @@
       vars:
         packages:
             - ack
-            - atom
             - build-essential
             - bzip2
             - curl
